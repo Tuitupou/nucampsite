@@ -1,10 +1,17 @@
 import { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, Label, FormGroup } from 'reactstrap';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
+import {
+    Button,
+    Modal,
+    ModalHeader,
+    ModalBody,
+    Label,
+    FormGroup
+} from 'reactstrap';
 import { validateCommentForm } from '../../utils/validateCommentForm';
 
 const CommentForm = ({ campsiteId }) => {
-    const [modalOpen, setModalOpen] = useState(false)
+    const [modalOpen, setModalOpen] = useState(false);
 
     const handleSubmit = (values) => {
         const comment = {
@@ -13,10 +20,8 @@ const CommentForm = ({ campsiteId }) => {
             author: values.author,
             text: values.commentText
         };
-        console.log("comment: ", comment);
+        console.log('comment:', comment);
         setModalOpen(false);
-
-
     };
 
     return (
@@ -33,7 +38,7 @@ const CommentForm = ({ campsiteId }) => {
                         initialValues={{
                             rating: undefined,
                             author: '',
-                            commentText: '',
+                            commentText: ''
                         }}
                         onSubmit={handleSubmit}
                         validate={validateCommentForm}
@@ -57,9 +62,8 @@ const CommentForm = ({ campsiteId }) => {
                                     {(msg) => <p className='text-danger'>{msg}</p>}
                                 </ErrorMessage>
                             </FormGroup>
-
                             <FormGroup>
-                                <Label htmlFor='author'>Author</Label>
+                                <Label htmlFor='author'>Your Name</Label>
                                 <Field
                                     name='author'
                                     placeholder='Your Name'
@@ -69,25 +73,25 @@ const CommentForm = ({ campsiteId }) => {
                                     {(msg) => <p className='text-danger'>{msg}</p>}
                                 </ErrorMessage>
                             </FormGroup>
-
                             <FormGroup>
                                 <Label htmlFor='commentText'>Comment</Label>
                                 <Field
                                     name='commentText'
-                                    as='textArea'
+                                    as='textarea'
                                     rows='12'
                                     className='form-control'
                                 />
                             </FormGroup>
-                            <Button type='submit' color='primary'>Submit</Button>
+                            <Button type='submit' color='primary'>
+                                Submit
+                            </Button>
                         </Form>
                     </Formik>
-
                 </ModalBody>
             </Modal>
         </>
-    )
-}
+    );
+};
 
-export default CommentForm
+export default CommentForm;
 
