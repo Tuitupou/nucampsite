@@ -24,3 +24,4 @@ const SubHeader = ({ current, detail }) => {
 };
 
 export default SubHeader;
+

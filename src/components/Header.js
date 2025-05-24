@@ -20,7 +20,7 @@ const Header = () => {
                 <img src={NucampLogo} alt='nucamp logo' className='float-start' />
                 <h1 className='mt-1'>NuCamp</h1>
             </NavbarBrand>
-
+            
             <NavbarToggler onClick={() => setMenuOpen(!menuOpen)} />
             <Collapse isOpen={menuOpen} navbar>
                 <Nav className='ms-auto' navbar>
@@ -52,3 +52,4 @@ const Header = () => {
 };
 
 export default Header;
+

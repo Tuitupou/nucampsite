@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import {
     Button,
@@ -10,12 +10,11 @@ import {
     FormGroup
 } from 'reactstrap';
 import { validateCommentForm } from '../../utils/validateCommentForm';
-import { addComment } from './commentsSlice';
-import { selectCurrentUser } from '../user/userSlice';
+import { postComment } from './commentsSlice';
 
 const CommentForm = ({ campsiteId }) => {
     const [modalOpen, setModalOpen] = useState(false);
-    const currentUser = useSelector(selectCurrentUser);
+
     const dispatch = useDispatch();
 
     const handleSubmit = (values) => {
@@ -27,7 +26,7 @@ const CommentForm = ({ campsiteId }) => {
             date: new Date(Date.now()).toISOString()
         };
         console.log('comment:', comment);
-        dispatch(addComment(comment));
+        dispatch(postComment(comment));
         setModalOpen(false);
     };
 
@@ -44,7 +43,7 @@ const CommentForm = ({ campsiteId }) => {
                     <Formik
                         initialValues={{
                             rating: undefined,
-                            author: currentUser ? currentUser.username : '',
+                            author: '',
                             commentText: ''
                         }}
                         onSubmit={handleSubmit}
@@ -101,4 +100,3 @@ const CommentForm = ({ campsiteId }) => {
 };
 
 export default CommentForm;
-
